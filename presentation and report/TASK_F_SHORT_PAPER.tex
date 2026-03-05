@@ -356,6 +356,9 @@ This project delivers a complete ABB IRB 120 kinematics pipeline from analytical
 
 Key lessons include the importance of DH-convention consistency, careful branch bookkeeping, and explicit singularity handling in wrist extraction. Current limitations include branch ranking under continuity constraints and behavior near degenerate wrist configurations. Future work will prioritize continuity-aware solution selection, stronger singularity regularization, and expanded stress tests near workspace boundaries.
 
+\subsection{AI Tooling Disclosure}
+GitHub Copilot (GPT-5.3-Codex) and Codex-assisted workflows were used as development aids while implementing and debugging the analytical IK solver and while building the React+TypeScript web application. Generated suggestions were not accepted blindly: equations, code paths, and edge-case behavior were reviewed and validated through FK$\rightarrow$IK$\rightarrow$FK reconstruction tests, randomized validation, and cross-checks against RoboDK.
+
 \begin{thebibliography}{1}
 
 \bibitem{me7751_l4}

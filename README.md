@@ -127,3 +127,13 @@ npm run dev
 Vite typically serves at http://localhost:5173 — open that URL in a browser.
 
 If you want to commit and push local helper scripts, `git` must be available in PATH. The `scripts/push_change.ps1` helper automates commit/pull/push on Windows.
+
+## Web app online hosting
+
+The web app is hosted on GitHub Pages for permanent online access:
+
+`https://amemerrifield-hub.github.io/mecheng-7751-project1-abb-irb120/`
+
+Deployment is automated by GitHub Actions using `.github/workflows/deploy-webapp-gh-pages.yml`.
+
+If the latest changes are not visible yet, open the repository Actions tab and confirm the most recent `Deploy Webapp to GitHub Pages` run has completed successfully.

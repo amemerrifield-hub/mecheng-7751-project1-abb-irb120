@@ -79,3 +79,10 @@ Observed status from current test notes:
 
 - MATLAB: run scripts in `Matlab/`.
 - Web app: see `webapp/README.md` for run/build/deploy instructions.
+
+## 9) AI tool usage disclosure
+
+- GitHub Copilot (GPT-5.3-Codex) and Codex-assisted workflows were used during development of both:
+  - the analytical IK implementation and related debugging scripts in MATLAB
+  - the React + TypeScript web app implementation and deployment configuration
+- All generated code and text were reviewed, edited, and validated through FK/IK round-trip tests, random-case checks, and manual inspection before inclusion in the final project materials.

@@ -1,0 +1,172 @@
+—R O B OT I C S
+IRB 120
+ABB’s 6 axis robot – for flexible
+and compact production
+The IRB 120 robot is the latest
+addition to ABB’s new fourth-
+generation of robotic technology.
+It is ideal for material handling and
+assembly applications and provides
+an agile, compact and lightweight
+solution with superior control and
+path accuracy.
+Compact and lightweight
+IRB 120’s compact design enables it to be mounted
+virtually anywhere at any angle without any restriction
+- for example inside a cell, on top of a machine or
+close to other robots.
+IRB 120 is also the most portable and easy to inte-
+grate on the market with its 25 kg weight. The smooth
+surfaces are easy to clean and the cables for air and
+customer signals are internally routed, all the way
+from the foot to the wrist, ensuring that integration
+is effortless.
+Multipurpose
+IRB 120 is ideal for a wide range of industries includ-
+ing the electronic, food and beverage, machinery,
+solar, pharmaceutical, medical and research sectors.
+The Food Grade Lubrication (NSF H1) option includes
+Clean Room ISO Class 5, which ensures uncompro-
+mising safety and hygiene for food and beverage
+applications.
+Optimized working range
+IRB 120 has a horizontal reach of 580 mm, the best
+in class stroke, the ability to reach 112 mm below
+its base and a very compact turning radius.
+Fast, accurate and agile
+Designed with a light, aluminum structure, the mo-
+tors ensure the robot is enabled with a fast acceler-
+ation, and can deliver accuracy and agility in any
+application.
+IRC5 Compact controller – optimized for small robots
+ABB’s new IRC5 Compact controller presents the capa-
+bilities of the IRC5 controller in a compact format. It
+brings accuracy and motion control to applications
+which have been exclusive to large installations and
+enables easy commissioning through one phase power
+input, external connectors for all signals and a built-
+in expandable 16 in, 16 out, I/O system.
+RobotStudio for offline programming enables manu-
+facturers to simulate a production cell to find the
+optimal position for the robot, and provide offline
+programming to prevent costly downtime and de-
+lays to production.
+Reduced footprint
+The combination of the new lightweight architecture
+of the IRB 120 with the new IRC5 Compact controller
+introduces a significantly reduced footprint.
+
+-- 1 of 2 --
+
+Axis movement 	Working range 	Velocity
+IRB 120
+Axis 1 rotation 	+165° to -165° 	250°/s
+Axis 2 arm 	+110° to -110° 	250°/s
+Axis 3 arm 	+70° to -110° 	250°/s
+Axis 4 wrist 	+160° to -160° 	320°/s
+Axis 5 bend 	+120° to -120° 	320°/s
+Axis 6 turn 	Default:
++400° to -400°
+Max. rev:
++242 to -242
+420°/s
+411
+580
+112
+982
+580
+165°
+165°
+R580
+R121 Minimum
+turning radius axis 1
+R169.4
+411
+580
+112
+982
+580
+—
+Specification
+—
+Movement
+Working range
+—
+Technical information
+Environment
+Ambient temperature for robot manipulator:
+During operation 	+5°C (41°F) to +45°C (113°F)
+During transportation
+and storage
+-25°C (-13°F) to +55°C (131°F)
+During short periods
+(max. 24 h)
+up to +70°C (158°F)
+Relative humidity 	Max. 95%
+Noise level 	Max. 70 dB (A)
+Safety 	Safety and emergency stops
+2-channel safety circuits super-
+vision, 3-position enabling device
+Emission 	EMC/EMI-shielded
+Options 	Clean Room ISO class 5
+(certified by IPA)**
+** ISO class 4 can be reached under certain conditions.
+Data and dimensions may be changed without notice.
+Electrical Connections
+Supply voltage 	200-600 V, 50/60 Hz
+Rated power
+transformer rating
+3.0 kVA
+Power consumption 	0.24 kW
+Physical
+Robot base 	180 x 180 mm
+Robot height 	700 mm
+Robot weight 	25 kg
+IRB 120
+1 kg picking cycle
+25 x 300 x 25 mm 	0.58 s
+25 x 300 x 25 with 180°
+axis 6 reorientation
+0.92 s
+Acceleration time 0-1 m/s 	0.07 s
+Position repeatability 	0.01 mm
+—
+Performance (according to ISO 9283)
+Robot version 	Reach
+(m)
+Handling
+capacity
+(kg)
+Armload
+(kg)
+IRB 120-3/0.6 	0.58 	3* 	0.30
+Number of axes 	6
+Protection 	IP30
+Mounting 	Any angle
+Controller 	IRC5 Compact/IRC5 Single Cabinet
+Integrated signal supply 	10 signals on wrist
+Integrated air supply 	4 air on wrist (5 bar)
+* 4 with vertical wrist
+ROBO149EN_D Rev. J November 2019
+—
+We reserve the right to make technical
+changes or modify the contents of this
+document without prior notice. With re-
+gard to purchase orders, the agreed par-
+ticulars shall prevail. ABB does not accept
+any responsibility whatsoever for potential
+errors or possible lack of information in
+this document.
+We reserve all rights in this document and
+in the subject matter and illustrations con-
+tained therein. Any reproduction, disclo-
+sure to third parties or utilization of its
+contents – in whole or in parts – is forbidden
+without prior written consent of ABB.
+Copyright© 2019 ABB
+All rights reserved
+—
+abb.com/robotics
+
+-- 2 of 2 --
+

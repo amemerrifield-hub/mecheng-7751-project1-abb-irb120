@@ -1,0 +1,191 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\title{ABB IRB 120 Inverse Kinematics Derivation}
+\author{MECHENG 7751 Project 1}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Scope and Conventions}
+This report derives the analytical inverse kinematics (IK) used in the project implementation for the ABB IRB 120.
+
+\begin{itemize}[leftmargin=1.5em]
+    \item Units: mm for position; degrees in user I/O; radians internally for trigonometric calculations.
+    \item Target pose:
+    \begin{equation}
+        T_{06}=\begin{bmatrix}R_{06} & p_{06}\\ \mathbf{0}_{1\times3} & 1\end{bmatrix},
+        \quad R_{06}\in SO(3),\; p_{06}\in\mathbb{R}^{3}.
+    \end{equation}
+    \item DH parameters used by the implementation:
+    \begin{align*}
+        \alpha &= [-90,\;0,\;-90,\;90,\;-90,\;0]^\circ,\\
+        a &= [0,\;270,\;70,\;0,\;0,\;0]\;\text{mm},\\
+        d &= [290,\;0,\;0,\;302,\;0,\;72]\;\text{mm}.
+    \end{align*}
+    \item Joint offsets satisfy
+    \begin{equation}
+        \theta_i = q_i + \mathrm{offset}_i,
+        \quad \mathrm{offset}=[0,-90,0,0,0,0]^\circ.
+    \end{equation}
+\end{itemize}
+
+\section{Kinematic Decoupling}
+Because joints 4--6 form a spherical wrist, IK is solved in two stages:
+\begin{enumerate}[leftmargin=1.5em]
+    \item Position IK for $q_1,q_2,q_3$ using the wrist center.
+    \item Orientation IK for $q_4,q_5,q_6$ from $R_{36}$.
+\end{enumerate}
+
+\subsection*{Wrist center}
+Let $\hat z_6$ be the tool $z$-axis (third column of $R_{06}$). Then
+\begin{equation}
+    p_w = p_{06} - d_6\hat z_6 = p_{06} - d_6R_{06}(:,3),
+\end{equation}
+with $d_6=72\,\text{mm}$. Define
+\begin{equation}
+    p_w=[p_x,\;p_y,\;p_z]^T,
+    \quad r=\sqrt{p_x^2+p_y^2},
+    \quad s=p_z-d_1,
+\end{equation}
+where $d_1=290\,\text{mm}$.
+
+\section{Solving $q_1$: Shoulder Branches}
+Base rotation is obtained from the planar projection of $p_w$:
+\begin{equation}
+    q_{1a}=\operatorname{atan2}(p_y,p_x),
+    \qquad q_{1b}=q_{1a}+\pi.
+\end{equation}
+These correspond to left/right shoulder configurations.
+
+\section{Arm Geometry for $q_2,q_3$}
+Using the adopted DH convention, the effective planar links are
+\begin{equation}
+    L_2=a_2=270,
+    \qquad L_3=\sqrt{a_3^2+d_4^2}=\sqrt{70^2+302^2}.
+\end{equation}
+Distance from joint-2 origin to wrist center in the arm plane:
+\begin{equation}
+    \rho=\sqrt{r^2+s^2}.
+\end{equation}
+By the law of cosines,
+\begin{equation}
+    D=\frac{\rho^2-L_2^2-L_3^2}{2L_2L_3}
+    =\frac{r^2+s^2-L_2^2-L_3^2}{2L_2L_3}.
+\end{equation}
+Reachability requires $|D|\le1$. If $|D|>1$, there is no real IK solution.
+
+\subsection*{Elbow branches}
+Define geometric elbow angle $q_3'$:
+\begin{equation}
+    q_3' = \operatorname{atan2}(\pm\sqrt{1-D^2},\,D),
+\end{equation}
+where $\pm$ gives elbow-up/down branches.
+
+\subsection*{Shoulder angle in the arm plane}
+\begin{equation}
+    \phi = \operatorname{atan2}(s,r),
+    \qquad
+    \psi = \operatorname{atan2}(L_3\sin q_3',\,L_2+L_3\cos q_3').
+\end{equation}
+For this frame assignment (matching implementation),
+\begin{equation}
+    q_2' = -(\phi+\psi).
+\end{equation}
+
+\section{Mapping to Robot Joint Variables}
+The geometric angles are mapped to robot joints via offsets and link composition.
+
+\subsection*{Joint 2 offset}
+Since $\theta_2=q_2-90^\circ$,
+\begin{equation}
+    q_2 = q_2' + 90^\circ.
+\end{equation}
+
+\subsection*{Joint 3 correction}
+Because $L_3$ combines $(a_3,d_4)$, define
+\begin{equation}
+    \phi_{\mathrm{off}}=\operatorname{atan2}(d_4,a_3).
+\end{equation}
+Then
+\begin{equation}
+    q_3 = q_3' - \phi_{\mathrm{off}}.
+\end{equation}
+Thus each shoulder/elbow branch yields one $(q_1,q_2,q_3)$ set.
+
+\section{Wrist Orientation: Solving $q_4,q_5,q_6$}
+Compute
+\begin{equation}
+    R_{36}=R_{03}^TR_{06},
+\end{equation}
+with $R_{03}$ from FK evaluated at $[q_1,q_2,q_3,0,0,0]$.
+
+Using this project's wrist convention ($\alpha_4=+90^\circ,\alpha_5=-90^\circ$):
+\begin{equation}
+    q_5 = \operatorname{atan2}\!\left(\sqrt{R_{36}(1,3)^2+R_{36}(2,3)^2},\,R_{36}(3,3)\right).
+\end{equation}
+
+If $|\sin q_5|\approx0$ (wrist singularity), choose
+\begin{equation}
+    q_4=0,
+    \qquad
+    q_6=\operatorname{atan2}(R_{36}(3,2),-R_{36}(3,1)).
+\end{equation}
+
+Otherwise principal wrist branch:
+\begin{equation}
+    q_4=\operatorname{atan2}(-R_{36}(2,3),-R_{36}(1,3)),
+    \qquad
+    q_6=\operatorname{atan2}(-R_{36}(3,2),R_{36}(3,1)).
+\end{equation}
+Second wrist-flip branch:
+\begin{equation}
+    (q_4,q_5,q_6)\rightarrow(q_4+\pi,-q_5,q_6+\pi).
+\end{equation}
+
+\section{Branch Count and Validation}
+Nominal number of candidates:
+\begin{equation}
+    2\;(q_1)\times2\;(q_3')\times2\;(\text{wrist})=8.
+\end{equation}
+
+Each candidate is angle-wrapped to $[-180^\circ,180^\circ]$ and checked by FK:
+\begin{equation}
+    e_p=\|p_{FK}-p_{target}\|,
+    \qquad
+    e_R=\|R_{FK}-R_{target}\|_F.
+\end{equation}
+The implementation returns all candidates along with $(e_p,e_R)$ for filtering/ranking.
+
+\section{Implementation-Aligned Algorithm}
+\begin{enumerate}[leftmargin=1.5em]
+    \item Input desired pose $T_{06}$ and extract $(R_{06},p_{06})$.
+    \item Compute wrist center $p_w=p_{06}-d_6R_{06}(:,3)$.
+    \item Enumerate two $q_1$ shoulder branches.
+    \item Compute $D$; if $|D|>1$, terminate (unreachable).
+    \item Enumerate two elbow branches via $q_3'$.
+    \item Compute $q_2'$ from $(\phi,\psi)$ and map to $(q_2,q_3)$.
+    \item Compute $R_{36}=R_{03}^TR_{06}$ and solve wrist angles.
+    \item Add wrist-flip branch (except reduced branch in singular case).
+    \item Wrap angles and validate each candidate using FK errors $(e_p,e_R)$.
+    \item Return full candidate set.
+\end{enumerate}
+
+\section{Discussion Notes}
+\begin{itemize}[leftmargin=1.5em]
+    \item The key geometric reduction is $(a_3,d_4)\rightarrow L_3$, producing the correction $\phi_{\mathrm{off}}=\operatorname{atan2}(d_4,a_3)$ in $q_3$.
+    \item The sign in $q_2'=-(\phi+\psi)$ is convention-dependent and must match the chosen DH frame orientation.
+    \item At wrist singularity, one rotational DOF is lost; setting $q_4=0$ is a practical gauge choice.
+\end{itemize}
+
+\vspace{0.5em}
+\noindent
+This derivation is intentionally aligned with the exact branch logic and equations in the project implementation.
+
+\end{document}

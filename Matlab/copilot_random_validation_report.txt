@@ -1,0 +1,11 @@
+Random validation report for ABB_IRB120_FK_IK
+Timestamp: 03-Mar-2026 15:54:54
+
+Tests: 200
+No-solution cases: 0
+Pose-consistency passes (FK->IK->FK): 200/200
+Original-branch joint matches (<0.50 deg): 127/200
+Worst best-candidate position error (mm): 5.77597388454e-13
+Worst best-candidate rotation error (Fro): 9.10873547778e-16
+
+OVERALL: PASS

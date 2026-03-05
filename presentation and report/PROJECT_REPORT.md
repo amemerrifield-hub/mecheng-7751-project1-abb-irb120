@@ -79,6 +79,8 @@ Observed status from current test notes:
 
 - MATLAB: run scripts in `Matlab/`.
 - Web app: see `webapp/README.md` for run/build/deploy instructions.
+- Hosted web app (GitHub Pages):
+  - `https://amemerrifield-hub.github.io/mecheng-7751-project1-abb-irb120/`
 
 ## 9) AI tool usage disclosure
 

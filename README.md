@@ -8,18 +8,30 @@ This repository contains the full source code and documentation for Project 1:
 
 ## Repository structure
 
+- `.github/`
+  - GitHub Actions workflows used to automate deployment tasks (for example, publishing the web app).
+- `.vscode/`
+  - Local VS Code workspace settings and editor configuration for this project.
+- `figures/`
+  - Images used in reports, slides, and validation comparisons (for example, RoboDK and app screenshots).
 - `Matlab/`
-  - MATLAB implementations for FK/IK and validation scripts.
+  - MATLAB implementations for FK/IK, diagnostics, and validation scripts.
   - Primary files:
     - `ABB_IRB120_FK_IK.m`
     - `ABB_IRB120_FK.m`
     - `run_20_tests.m`
     - `verify_ik_correct.m`
+- `presentation and report/`
+  - Final presentation deck and written report artifacts (`.pptx`, `.pdf`, `.tex`, `.md`).
+- `scripts/`
+  - Utility scripts for repository workflow tasks (such as Windows PowerShell helper scripts).
+- `setup and problem statement/`
+  - Source materials and reference files from the assignment setup (spec sheet, DH references, and robot model files).
 - `webapp/`
   - React + TypeScript app for interactive kinematics/motion planning.
   - Includes FK/IK implementation in `webapp/src/kinematics/abb120.ts`.
-- `PROJECT_REPORT.md`
-  - Brief report covering derivations, testing, and design decisions.
+- `README.md`
+  - Project overview and instructions for MATLAB and web app workflows.
 
 ## MATLAB file notes
 
